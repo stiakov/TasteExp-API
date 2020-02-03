@@ -1,7 +1,68 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+require_relative './assets/content'
+require 'faker'
+include Content
+
+Sarah = User.create!(name: 'Sarah Weiss', email: 's@s.net', password: '123456x', password_confirmation: '123456x')
+
+6.times do
+  User.create!(name: Faker::Name.name, email: Faker::Internet.email, password: '123123q', password_confirmation: '123123q')
+end
+
+get_countries.each do |country|
+  Country.create!(name: country[:name], region: country[:region])
+end
+
+get_commerce_type.each do |type|
+  CommerceType.create!(name: type)
+end
+
+country = Country.find_by(id: 42)
+type = CommerceType.all.sample
+
+establishment = Commerce.create!(
+    user: Sarah,
+    name: 'Bistro Pub',
+    description: Faker::Company.bs,
+    country: country,
+    state: 'Fake State',
+    city: Faker::Nation.capital_city,
+    address: Faker::Address.full_address,
+    landline: Faker::PhoneNumber.phone_number_with_country_code,
+    mobile: Faker::PhoneNumber.cell_phone_with_country_code,
+    email: Faker::Internet.email,
+    website: Faker::Internet.domain_name,
+    instagram: Faker::Internet.username,
+    commerce_type: type
+)
+
+23.times do
+  user = User.all.sample
+  country = Country.all.sample
+  cm_type = CommerceType.all.sample
+  user.commerces.create!(
+      name: Faker::Company.name,
+      description: Faker::Company.catch_phrase,
+      country: country,
+      state: 'Fake State',
+      city: Faker::Nation.capital_city,
+      address: Faker::Address.full_address,
+      landline: Faker::PhoneNumber.phone_number_with_country_code,
+      mobile: Faker::PhoneNumber.cell_phone_with_country_code,
+      email: Faker::Internet.email,
+      website: Faker::Internet.domain_name,
+      instagram: Faker::Internet.username,
+      commerce_type: cm_type,
+  )
+end
+
+5.times do
+  Photo.create!(imageable: establishment, image_data: Faker::String.random(length: 12))
+end
+
+2.times do
+  Photo.create!(imageable: Sarah, image_data: Faker::String.random(length: 7))
+end
+
+Reservation.create!(user: Sarah, commerce: establishment, seat: 2, date_time: Time.now.to_i)
+
+Favorite.create(user: Sarah, commerce: establishment)
