@@ -42,5 +42,5 @@ class V1::CommercesController < ApplicationController
                   :commerce_type_id,
                   :user_id,
                   :address)
-    end
+  end
 end
