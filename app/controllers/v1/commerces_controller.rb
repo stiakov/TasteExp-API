@@ -1,29 +1,36 @@
 class V1::CommercesController < ApplicationController
+  before_action :authenticate_user!, except: %i[index show]
   respond_to :json
   def index
     render json: Commerce.all
   end
 
+  def notsaved
+    user_favs = current_user.favorites.map{ |item| item.commerce.name }
+    filtered = Commerce.where.not(name: user_favs)
+    render json: filtered
+  end
+
   def create
     commerce = Commerce.create(commerce_params)
-    commerce.valid? ? (render json: commerce) : no_valid
+    (render json: commerce) if commerce.valid?
   end
 
   def show
     commerce = Commerce.find_by(commerce_params)
-    commerce ? (render json: commerce) : not_found
+    (render json: commerce) if commerce
   end
 
   def update
     commerce = Commerce.find_by_id(params[:id])
     commerce&.update(commerce_params)
-    commerce ? (render json: commerce) : no_valid
+    (render json: commerce) if commerce
   end
 
   def destroy
     commerce = Commerce.find_by_id(params[:id])
     commerce&.destroy
-    commerce ? (render json: commerce) : no_valid
+    (render json: commerce) if commerce
   end
 
   private

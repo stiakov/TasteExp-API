@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
   namespace :v1 do
     get 'commerces/index'
+    get 'commerces/notsaved'
     post 'commerces/create'
     get 'commerces/show/:id', to: 'commerces#show'
     put 'commerces/:id/edit', to: 'commerces#update'
@@ -33,6 +34,7 @@ Rails.application.routes.draw do
 
   namespace :v1 do
     get 'favorites/index'
+    get 'favorites/user', to: 'favorites#user_favorites'
     post 'favorites/create'
     get 'favorites/show/:id', to: 'favorites#show'
     delete 'favorites/:id/delete', to: 'favorites#destroy'
