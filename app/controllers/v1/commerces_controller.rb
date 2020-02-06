@@ -6,8 +6,8 @@ class V1::CommercesController < ApplicationController
   end
 
   def notsaved
-    user_favs = current_user.favorites.map{ |item| item.commerce.name }
-    filtered = Commerce.where.not(name: user_favs)
+    user_favs = current_user.favorites.map{ |item| item.commerce.id }
+    filtered = Commerce.where.not(id: user_favs)
     render json: filtered
   end
 
