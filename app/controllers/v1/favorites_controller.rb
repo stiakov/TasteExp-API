@@ -6,7 +6,7 @@ class V1::FavoritesController < ApplicationController
 
   def show
     fav = Favorite.find_by(favorite_params)
-    (render json: fav) if fav
+    render json: fav if fav
   end
 
   def user_favorites
@@ -15,13 +15,13 @@ class V1::FavoritesController < ApplicationController
 
   def create
     new_fav = Favorite.create(favorite_params)
-    (render json: new_fav) if new_fav.save
+    render json: new_fav if new_fav.save
   end
 
   def destroy
     disposed_fav = Favorite.find_by(favorite_params)
     disposed_fav&.destroy
-    (render json: disposed_fav) if disposed_fav
+    render json: disposed_fav if disposed_fav
   end
 
   private
