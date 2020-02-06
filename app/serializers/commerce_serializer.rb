@@ -1,5 +1,5 @@
 class CommerceSerializer < ActiveModel::Serializer
-  attributes :id, :name, :description, :state, :city, :address, :landline, :mobile, :email, :website, :instagram, :commerce_type, :country
+  attributes :id, :name, :description, :state, :city, :address, :landline, :mobile, :email, :website, :instagram, :commerce_type, :country, :photos
   belongs_to :user, serializer: UserSerializer
   belongs_to :commerce_type, serializer: CommerceTypeSerializer
   belongs_to :country, serializer: CountrySerializer

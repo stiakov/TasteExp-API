@@ -34,12 +34,13 @@ establishment = Commerce.create!(
     instagram: Faker::Internet.username,
     commerce_type: type
 )
+Photo.create!(imageable: establishment, image_data: getImages(-1))
 
-23.times do
+23.times do |i|
   user = User.all.sample
   country = Country.all.sample
   cm_type = CommerceType.all.sample
-  user.commerces.create!(
+  commerce = user.commerces.create!(
       name: Faker::Company.name,
       description: Faker::Company.catch_phrase,
       country: country,
@@ -53,10 +54,7 @@ establishment = Commerce.create!(
       instagram: Faker::Internet.username,
       commerce_type: cm_type,
   )
-end
-
-5.times do
-  Photo.create!(imageable: establishment, image_data: Faker::String.random(length: 12))
+    Photo.create!(imageable: commerce, image_data: getImages(i))
 end
 
 2.times do
