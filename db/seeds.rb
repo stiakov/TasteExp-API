@@ -12,12 +12,12 @@ get_countries.each do |country|
   Country.create!(name: country[:name], region: country[:region])
 end
 
-get_commerce_type.each do |type|
-  CommerceType.create!(name: type)
+get_categories.each do |type|
+  Category.create!(name: type)
 end
 
 country = Country.find_by(id: 42)
-type = CommerceType.all.sample
+type = Category.all.sample
 
 establishment = Commerce.create!(
     user: Sarah,
@@ -32,14 +32,14 @@ establishment = Commerce.create!(
     email: Faker::Internet.email,
     website: Faker::Internet.domain_name,
     instagram: Faker::Internet.username,
-    commerce_type: type
+    category: type
 )
 Photo.create!(imageable: establishment, image_data: getImages(-1))
 
 23.times do |i|
   user = User.all.sample
   country = Country.all.sample
-  cm_type = CommerceType.all.sample
+  comm_cat = Category.all.sample
   commerce = user.commerces.create!(
       name: Faker::Company.name,
       description: Faker::Company.catch_phrase,
@@ -52,7 +52,7 @@ Photo.create!(imageable: establishment, image_data: getImages(-1))
       email: Faker::Internet.email,
       website: Faker::Internet.domain_name,
       instagram: Faker::Internet.username,
-      commerce_type: cm_type,
+      category: comm_cat,
   )
     Photo.create!(imageable: commerce, image_data: getImages(i))
 end

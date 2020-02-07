@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(version: 2020_01_31_234239) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "commerce_types", force: :cascade do |t|
+  create_table "categories", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -34,10 +34,10 @@ ActiveRecord::Schema.define(version: 2020_01_31_234239) do
     t.string "email"
     t.string "website"
     t.string "instagram"
-    t.bigint "commerce_type_id", null: false
+    t.bigint "category_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["commerce_type_id"], name: "index_commerces_on_commerce_type_id"
+    t.index ["category_id"], name: "index_commerces_on_category_id"
     t.index ["country_id"], name: "index_commerces_on_country_id"
     t.index ["user_id"], name: "index_commerces_on_user_id"
   end
@@ -108,7 +108,7 @@ ActiveRecord::Schema.define(version: 2020_01_31_234239) do
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
   end
 
-  add_foreign_key "commerces", "commerce_types"
+  add_foreign_key "commerces", "categories"
   add_foreign_key "commerces", "countries"
   add_foreign_key "commerces", "users"
   add_foreign_key "favorites", "commerces"

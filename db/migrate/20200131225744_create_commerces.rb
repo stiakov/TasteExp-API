@@ -13,7 +13,7 @@ class CreateCommerces < ActiveRecord::Migration[6.0]
       t.string :email
       t.string :website
       t.string :instagram
-      t.references :commerce_type, null: false, foreign_key: true
+      t.references :category, null: false, foreign_key: true
 
       t.timestamps
     end

@@ -46,7 +46,7 @@ class V1::CommercesController < ApplicationController
                   :email,
                   :website,
                   :instagram,
-                  :commerce_type_id,
+                  :category_id,
                   :user_id,
                   :address)
   end
