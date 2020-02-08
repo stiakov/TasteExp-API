@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   mount_devise_token_auth_for 'User', at: 'auth'
   namespace :v1 do
+    resources :categories
     get 'countries/index'
     get 'users/index'
     get 'users/show/:id', to: 'users#show'
@@ -9,9 +10,11 @@ Rails.application.routes.draw do
   namespace :v1 do
     get 'commerces/index'
     get 'commerces/notsaved'
+    get 'commerces/filter/:id', to: 'commerces#filter_not_saved'
+    get 'commerces/filterfav/:id', to: 'commerces#filter_favorites'
     post 'commerces/create'
     get 'commerces/show/:id', to: 'commerces#show'
-    put 'commerces/:id/edit', to: 'commerces#update'
+    put 'commerces/:id/edit', to: 'commerces#updacte'
     get 'commerces/show'
     delete 'commerces/:id/delete', to: 'commerces#destroy'
   end
@@ -25,11 +28,11 @@ Rails.application.routes.draw do
   end
 
   namespace :v1 do
-    get 'routes/index'
-    post 'routes/create'
-    get 'routes/show/:id', to: 'routes#show'
-    put 'routes/:id/edit', to: 'routes#update'
-    delete 'routes/:id/delete', to: 'routes#destroy'
+    get 'commerce_types/index'
+    post 'commerce_types/create'
+    get 'commerce_types/show/:id', to: 'commerce_types#show'
+    put 'commerce_types/:id/edit', to: 'commerce_types#update'
+    delete 'commerce_types/:id/delete', to: 'commerce_types#destroy'
   end
 
   namespace :v1 do

@@ -1,5 +1,5 @@
 module Content
-  def get_commerce_type
+  def get_categories
     ['Bar', 'Coffee Shop', 'Drive Inn', 'Fast Food', 'Restaurant', 'Soda Fountain']
   end
 
@@ -233,5 +233,36 @@ module Content
         {name: 'Zambia', region: 'SUB-SAHARAN AFRICA'},
         {name: 'Zimbabwe', region: 'SUB-SAHARAN AFRICA'}
     ]
+  end
+
+  def getImages(index)
+    image =  %w[
+      https://i.imgur.com/u2YTmRX.jpg
+      https://i.imgur.com/ED8tEIy.jpg
+      https://i.imgur.com/qGM2e5a.jpg
+      https://i.imgur.com/uU5DnUb.jpg
+      https://i.imgur.com/ZGIU2R7.jpg
+      https://i.imgur.com/mwTnxGb.jpg
+      https://i.imgur.com/zjTWvOy.jpg
+      https://i.imgur.com/WWTltUs.jpg
+      https://i.imgur.com/kZ7fIfl.jpg
+      https://i.imgur.com/6kitc4d.jpg
+      https://i.imgur.com/oCQVBu6.jpg
+      https://i.imgur.com/hcUwHnf.jpg
+      https://i.imgur.com/k60KDzc.jpg
+      https://i.imgur.com/wnyQ6sL.jpg
+      https://i.imgur.com/C3XKEFy.jpg
+      https://i.imgur.com/zvVWCFg.jpg
+      https://i.imgur.com/F78iH0A.jpg
+      https://i.imgur.com/EghMMj1.jpg
+      https://i.imgur.com/bIvCUSD.jpg
+      https://i.imgur.com/ZqEsK2H.jpg
+      https://i.imgur.com/tN9hC3K.jpg
+      https://i.imgur.com/0MSfsKG.jpg
+      https://i.imgur.com/MWVzfoG.jpg
+      https://i.imgur.com/P0qF5x1.jpg
+      https://i.imgur.com/yyWunOf.jpg
+    ]
+    return image[index]
   end
 end
