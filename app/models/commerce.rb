@@ -10,5 +10,5 @@ class Commerce < ApplicationRecord
   validates_presence_of :name, :user, :category, :email, :country, :city
   validates_uniqueness_of :email, allow_blank: false
 
-  scope :filter_not_saved, ->(filter_id) { where("category_id = ?", filter_id) }
+  scope :filter_not_saved, ->(filter_id) { where('category_id = ?', filter_id) }
 end

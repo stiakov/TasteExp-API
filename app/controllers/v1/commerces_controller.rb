@@ -6,13 +6,13 @@ class V1::CommercesController < ApplicationController
   end
 
   def notsaved
-    user_favs = current_user.favorites.map{ |item| item.commerce.id }
+    user_favs = current_user.favorites.map { |item| item.commerce.id }
     filtered = Commerce.where.not(id: user_favs)
     render json: filtered
   end
 
   def filter_not_saved
-    user_favs = current_user.favorites.map{ |item| item.commerce.id }
+    user_favs = current_user.favorites.map { |item| item.commerce.id }
     not_favs = Commerce.where.not(id: user_favs)
     render json: not_favs.filter_not_saved(commerce_params[:id].to_i)
   end
