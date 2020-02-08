@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   namespace :v1 do
     get 'commerces/index'
     get 'commerces/notsaved'
+    get 'commerces/filter/:id', to: 'commerces#filter_not_saved'
+    get 'commerces/filterfav/:id', to: 'commerces#filter_favorites'
     post 'commerces/create'
     get 'commerces/show/:id', to: 'commerces#show'
     put 'commerces/:id/edit', to: 'commerces#updacte'

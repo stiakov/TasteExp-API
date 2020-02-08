@@ -1,6 +1,6 @@
 module Content
   def get_categories
-    ['All', 'Bar', 'Coffee Shop', 'Drive Inn', 'Fast Food', 'Restaurant', 'Soda Fountain']
+    ['Bar', 'Coffee Shop', 'Drive Inn', 'Fast Food', 'Restaurant', 'Soda Fountain']
   end
 
   def get_countries

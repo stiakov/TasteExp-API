@@ -11,6 +11,18 @@ class V1::CommercesController < ApplicationController
     render json: filtered
   end
 
+  def filter_not_saved
+    user_favs = current_user.favorites.map{ |item| item.commerce.id }
+    not_favs = Commerce.where.not(id: user_favs)
+    render json: not_favs.filter_not_saved(commerce_params[:id].to_i)
+  end
+
+  def filter_favorites
+    user_favs = current_user.favorites
+    filtered = user_favs.filter { |item| item.commerce.category_id == commerce_params[:id].to_i }
+    render json: filtered
+  end
+
   def create
     commerce = Commerce.create(commerce_params)
     (render json: commerce) if commerce.valid?
