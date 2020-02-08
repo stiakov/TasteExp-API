@@ -6,6 +6,7 @@ ruby '2.7.0'
 gem 'active_model_serializers', '~> 0.10.10'
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'devise_token_auth', '~> 1.1', '>= 1.1.3'
+gem 'faker', '~> 2.10', '>= 2.10.1'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 4.1'
 gem 'rack-cors', '~> 1.1', '>= 1.1.1'
@@ -14,7 +15,6 @@ gem 'rubocop', '~> 0.79.0'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
-  gem 'faker', '~> 2.10', '>= 2.10.1'
 end
 
 group :development do
