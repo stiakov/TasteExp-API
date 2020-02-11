@@ -7,6 +7,11 @@
 It's the backend side that will serve a set of JSON endpoints for an application intended to find, publish, discover and collect beverage and food places in your city.
 
 ## Getting Started
+
+### Live Preview
+* Check it out here: https://tastexplorer.herokuapp.com/
+* Sign up to start.
+
 ### Prerequisites
 * Ruby 2.7
 * Rails 6.0
