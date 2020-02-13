@@ -36,7 +36,6 @@ Rails.application.routes.draw do
   end
 
   namespace :v1 do
-    get 'favorites/index'
     get 'favorites/user', to: 'favorites#user_favorites'
     post 'favorites/create'
     get 'favorites/show/:id', to: 'favorites#show'
@@ -48,5 +47,5 @@ Rails.application.routes.draw do
     get 'photos/show/user/:id', to: 'photos#show_user'
     get 'photos/show/commerce/:id', to: 'photos#show_commerce'
     delete 'photos/:id/delete', to: 'photos#destroy'
-    end
+  end
 end
