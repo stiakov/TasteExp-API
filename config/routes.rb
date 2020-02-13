@@ -28,14 +28,6 @@ Rails.application.routes.draw do
   end
 
   namespace :v1 do
-    get 'commerce_types/index'
-    post 'commerce_types/create'
-    get 'commerce_types/show/:id', to: 'commerce_types#show'
-    put 'commerce_types/:id/edit', to: 'commerce_types#update'
-    delete 'commerce_types/:id/delete', to: 'commerce_types#destroy'
-  end
-
-  namespace :v1 do
     get 'favorites/user', to: 'favorites#user_favorites'
     post 'favorites/create'
     get 'favorites/show/:id', to: 'favorites#show'
