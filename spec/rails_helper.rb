@@ -73,4 +73,6 @@ RSpec.configure do |config|
     # add `FactoryBot` methods
     config_rspec.include FactoryBot::Syntax::Methods
   end
+
+  config.include Devise::Test::IntegrationHelpers, type: :request
 end
