@@ -5,6 +5,7 @@ RSpec.describe 'Commerces', type: :request do
     it 'return status 200 when the route is ok' do
       get v1_commerces_index_path
       expect(response).to have_http_status(200)
+      expect(response.content_type).to eq('application/json; charset=utf-8')
     end
     it 'return status 204 when can not find a param or commerce' do
       get v1_commerces_show_path(1)
