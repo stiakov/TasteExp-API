@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Favorites", type: :request do
+RSpec.describe 'Favorites', type: :request do
   context 'restricted actions for NON_AUTHENTICATED users' do
     it 'Favorite create returns status 401' do
       post v1_favorites_create_path
@@ -9,7 +9,7 @@ RSpec.describe "Favorites", type: :request do
 
     it 'Favorites create returns a body that asks for signin or signup' do
       post v1_favorites_create_path
-      error = {"errors":['You need to sign in or sign up before continuing.']}
+      error = { "errors": ['You need to sign in or sign up before continuing.'] }
       expect(response.body).to include(error.to_json)
     end
 
@@ -20,7 +20,7 @@ RSpec.describe "Favorites", type: :request do
 
     it 'Favorite update returns a body that asks for signin or signup' do
       get v1_favorites_show_path(1)
-      error = {"errors":['You need to sign in or sign up before continuing.']}
+      error = { "errors": ['You need to sign in or sign up before continuing.'] }
       expect(response.body).to include(error.to_json)
     end
 
@@ -31,7 +31,7 @@ RSpec.describe "Favorites", type: :request do
 
     it 'Favorite delete returns a body that asks for signin or signup' do
       delete v1_favorites_destroy_path(1)
-      error = {"errors":['You need to sign in or sign up before continuing.']}
+      error = { "errors": ['You need to sign in or sign up before continuing.'] }
       expect(response.body).to include(error.to_json)
     end
   end

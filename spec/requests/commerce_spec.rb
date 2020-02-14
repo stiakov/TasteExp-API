@@ -31,7 +31,7 @@ RSpec.describe 'Commerces', type: :request do
 
     it 'Commerce update returns a body that asks for SignIn or SignUp' do
       put v1_commerces_update_path(1)
-      error = { errors:['You need to sign in or sign up before continuing.'] }
+      error = { errors: ['You need to sign in or sign up before continuing.'] }
       expect(response.body).to include(error.to_json)
     end
 
@@ -42,10 +42,12 @@ RSpec.describe 'Commerces', type: :request do
 
     it 'Commerce delete returns a body that asks for SignIn or SignUp' do
       delete v1_commerces_destroy_path(1)
-      error = { errors:['You need to sign in or sign up before continuing.'] }
+      error = { errors: ['You need to sign in or sign up before continuing.'] }
       expect(response.body).to include(error.to_json)
     end
+  end
 
+  context 'restricted actions for NON_AUTHENTICATED user' do
     it 'Commerce Not Saved action returns status 401' do
       get v1_commerces_notsaved_path
       expect(response).to have_http_status(401)
@@ -53,7 +55,7 @@ RSpec.describe 'Commerces', type: :request do
 
     it 'Commerce Not Saved action returns a body that asks for SignIn or SignUp' do
       get v1_commerces_notsaved_path
-      error = { errors:['You need to sign in or sign up before continuing.'] }
+      error = { errors: ['You need to sign in or sign up before continuing.'] }
       expect(response.body).to include(error.to_json)
     end
 
@@ -64,7 +66,7 @@ RSpec.describe 'Commerces', type: :request do
 
     it 'Commerce Filtering  Not Saved action returns a body that asks for SignIn or SignUp' do
       get v1_commerces_not_saved_filter_path(1)
-      error = { errors:['You need to sign in or sign up before continuing.'] }
+      error = { errors: ['You need to sign in or sign up before continuing.'] }
       expect(response.body).to include(error.to_json)
     end
 
@@ -75,7 +77,7 @@ RSpec.describe 'Commerces', type: :request do
 
     it 'Commerce Filtering Favorites action returns a body that asks for SignIn or SignUp' do
       get v1_commerces_favorites_filter_path(1)
-      error = { errors:['You need to sign in or sign up before continuing.'] }
+      error = { errors: ['You need to sign in or sign up before continuing.'] }
       expect(response.body).to include(error.to_json)
     end
   end
