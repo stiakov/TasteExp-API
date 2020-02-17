@@ -1,52 +1,40 @@
 Rails.application.routes.draw do
   mount_devise_token_auth_for 'User', at: 'auth'
   namespace :v1 do
-    resources :categories
+    resources :categories, only: %i[index show]
     get 'countries/index'
-    get 'users/index'
-    get 'users/show/:id', to: 'users#show'
   end
 
   namespace :v1 do
     get 'commerces/index'
     get 'commerces/notsaved'
-    get 'commerces/filter/:id', to: 'commerces#filter_not_saved'
-    get 'commerces/filterfav/:id', to: 'commerces#filter_favorites'
+    get 'commerces/filter/:id', to: 'commerces#filter_not_saved', as: :commerces_not_saved_filter
+    get 'commerces/filterfav/:id', to: 'commerces#filter_favorites', as: :commerces_favorites_filter
     post 'commerces/create'
-    get 'commerces/show/:id', to: 'commerces#show'
-    put 'commerces/:id/edit', to: 'commerces#updacte'
-    get 'commerces/show'
-    delete 'commerces/:id/delete', to: 'commerces#destroy'
+    get 'commerces/show/:id', to: 'commerces#show', as: :commerces_show
+    put 'commerces/:id/edit', to: 'commerces#update', as: :commerces_update
+    delete 'commerces/:id/delete', to: 'commerces#destroy', as: :commerces_destroy
   end
 
   namespace :v1 do
     get 'reservations/index'
     post 'reservations/create'
-    get 'reservations/show/:id', to: 'reservations#show'
-    put 'reservations/:id/edit', to: 'reservations#update'
-    delete 'reservations/:id/delete', to: 'reservations#destroy'
+    get 'reservations/show/:id', to: 'reservations#show', as: :reservations_show
+    put 'reservations/:id/edit', to: 'reservations#update', as: :reservations_update
+    delete 'reservations/:id/delete', to: 'reservations#destroy', as: :reservations_destroy
   end
 
   namespace :v1 do
-    get 'commerce_types/index'
-    post 'commerce_types/create'
-    get 'commerce_types/show/:id', to: 'commerce_types#show'
-    put 'commerce_types/:id/edit', to: 'commerce_types#update'
-    delete 'commerce_types/:id/delete', to: 'commerce_types#destroy'
-  end
-
-  namespace :v1 do
-    get 'favorites/index'
-    get 'favorites/user', to: 'favorites#user_favorites'
+    get 'favorites/user', to: 'favorites#user_favorites', as: :favorites_user
     post 'favorites/create'
-    get 'favorites/show/:id', to: 'favorites#show'
-    delete 'favorites/:id/delete', to: 'favorites#destroy'
+    get 'favorites/show/:id', to: 'favorites#show', as: :favorites_show
+    delete 'favorites/:id/delete', to: 'favorites#destroy', as: :favorites_destroy
   end
 
   namespace :v1 do
     post 'photos/create'
-    get 'photos/show/user/:id', to: 'photos#show_user'
-    get 'photos/show/commerce/:id', to: 'photos#show_commerce'
-    delete 'photos/:id/delete', to: 'photos#destroy'
-    end
+    get 'photos/show/user/:id', to: 'photos#show_user', as: :photos_user
+    get 'photos/show/commerce/:id', to: 'photos#show_commerce', as: :photos_commerce
+    delete 'photos/:id/delete', to: 'photos#destroy', as: :photos_destroy
+  end
 end

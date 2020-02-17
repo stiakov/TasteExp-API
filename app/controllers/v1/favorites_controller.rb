@@ -1,8 +1,5 @@
 class V1::FavoritesController < ApplicationController
   before_action :authenticate_user!
-  def index
-    render json: Favorite.all
-  end
 
   def show
     fav = Favorite.find_by(favorite_params)
